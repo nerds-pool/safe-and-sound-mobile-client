@@ -8,6 +8,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+safe-and-sound.jks
 
 # macOS
 .DS_Store
