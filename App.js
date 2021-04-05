@@ -8,7 +8,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
-      <MainNavigation isGuest={false} isPHI={false} />
+      <MainNavigation isGuest={false} isPHI={true} />
     </NavigationContainer>
   );
 }

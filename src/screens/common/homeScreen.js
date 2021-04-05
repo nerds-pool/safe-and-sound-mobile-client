@@ -6,7 +6,7 @@ import HeaderButton from "../../components/ui/customHeaderButton";
 import Colors from "../../theme/Colors";
 
 const homeScreen = (props) => {
-  const [Type, setType] = useState("user");
+  const [Type, setType] = useState("phi");
 
   useEffect(() => {
     repaintHeaderButtons();
@@ -22,7 +22,7 @@ const homeScreen = (props) => {
               IconComponent={Ionicons}
               iconName="document-text-outline"
               color={Colors.accent}
-              onPress={() => {}}
+              onPress={() => props.navigation.navigate("history")}
             />
             <Item
               title="Log Out"
@@ -45,14 +45,14 @@ const homeScreen = (props) => {
               IconComponent={Ionicons}
               iconName="create-outline"
               color={Colors.accent}
-              onPress={() => {}}
+              onPress={() => props.navigation.navigate("test")}
             />
             <Item
               title="Search"
               IconComponent={Ionicons}
               iconName="search-outline"
               color={Colors.accent}
-              onPress={() => {}}
+              onPress={() => props.navigation.navigate("search")}
             />
             <Item
               title="Log Out"
