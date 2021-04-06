@@ -1,17 +1,16 @@
 import React, { useContext, useEffect } from "react";
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/ui/customHeaderButton";
 import Colors from "../../theme/Colors";
 import AppContext from "../../context";
+import BigButton from "../../components/ui/BigButton";
+
+const { width: WINDOW_WIDTH } = Dimensions.get("window");
 
 const homeScreen = (props) => {
   const { appMode } = useContext(AppContext);
-
-  useEffect(() => {
-    repaintHeaderButtons();
-  }, [appMode]);
 
   const repaintHeaderButtons = () => {
     if (appMode === "user") {
@@ -68,11 +67,62 @@ const homeScreen = (props) => {
     }
   };
 
+  const handleOnPress = () => {
+    props.navigation.navigate("scanner");
+  };
+
+  useEffect(() => {
+    repaintHeaderButtons();
+  }, [appMode]);
+
   return (
-    <View>
-      <Text>Home screen</Text>
+    <View style={styles.screen}>
+      <Text style={styles.txt}>Scan the QR code at your visited location to check-in safely!</Text>
+      <View style={styles.imgWrapper}>
+        <Image
+          style={styles.img}
+          source={require("../../../assets/home_transparent.png")}
+        />
+      </View>
+      <View style={styles.btnWrapper}>
+        <BigButton style={styles.btn} onPress={handleOnPress}>
+          {"Scan QR"}
+        </BigButton>
+      </View>
     </View>
   );
 };
 
 export default homeScreen;
+
+const styles = StyleSheet.create({
+  btn: {
+    backgroundColor: Colors.background,
+    height: 60,
+  },
+  btnWrapper: {
+    flex: 1,
+    width: WINDOW_WIDTH - 60,
+  },
+  img: {
+    height: "100%",
+    width: "100%",
+  },
+  imgWrapper: {
+    flex: 5,
+    width: WINDOW_WIDTH,
+  },
+  screen: {
+    alignItems: "center",
+    backgroundColor: Colors.primary,
+    flex: 1,
+    justifyContent: "center",
+  },
+  txt: {
+    color: Colors.white,
+    fontSize: 18,
+    marginTop: 30,
+    padding: 20,
+    textAlign: "center"
+  }
+});

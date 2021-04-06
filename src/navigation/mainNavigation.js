@@ -9,6 +9,7 @@ import {
   SignupScreen,
   SigninScreen,
   HomeScreen,
+  QrScannerScreen,
   TestResultsScreen,
   SearchUserScreen,
   UserScreen,
@@ -70,6 +71,14 @@ const mainNavigator = (props) => {
         }}
       />
       <Stack.Screen
+        name="scanner"
+        component={QrScannerScreen}
+        options={{
+          title: "Check In",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <Stack.Screen
         name="search"
         component={SearchUserScreen}
         options={{
@@ -98,6 +107,14 @@ const mainNavigator = (props) => {
         component={HomeScreen}
         options={{
           title: "Safe&Sound",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <Stack.Screen
+        name="scanner"
+        component={QrScannerScreen}
+        options={{
+          title: "Check In",
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
