@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useCallback } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useContext, useEffect } from "react";
+import { Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/ui/customHeaderButton";
@@ -76,5 +76,3 @@ const homeScreen = (props) => {
 };
 
 export default homeScreen;
-
-const styles = StyleSheet.create({});
