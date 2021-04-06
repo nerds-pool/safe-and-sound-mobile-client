@@ -1,5 +1,8 @@
-import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import React, { useContext } from "react";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import Colors from "../theme/Colors";
 import {
   StartScreen,
@@ -11,6 +14,7 @@ import {
   UserScreen,
   NewTestResultScreen,
 } from "../screens";
+import AppContext from "../context";
 
 const Stack = createStackNavigator();
 
@@ -18,56 +22,73 @@ const DEFAULT_STACK_NAVIGATION_OPTIONS = {
   headerStyle: {
     backgroundColor: Colors.primary,
   },
-  // headerTitleStyle: {
-  //   fontFamily: Typography.displayHeavy.fontFamily,
-  //   letterSpacing: Typography.displayHeavy.letterSpacing,
-  // },
   headerTintColor: Colors.background,
 };
 
 const mainNavigator = (props) => {
+  const { appMode } = useContext(AppContext);
+
+  React.useEffect(() => console.log("App Mode in main nav", appMode), [
+    appMode,
+  ]);
+
   return props.isGuest ? (
-    <Stack.Navigator screenOptions={{ ...DEFAULT_STACK_NAVIGATION_OPTIONS }}>
+    <Stack.Navigator
+      screenOptions={{
+        ...DEFAULT_STACK_NAVIGATION_OPTIONS,
+        ...TransitionPresets.SlideFromRightIOS,
+      }}
+    >
       <Stack.Screen
         name="start"
         component={StartScreen}
         options={{
           title: "",
           headerTransparent: true,
+          ...TransitionPresets.SlideFromRightIOS,
         }}
       />
       <Stack.Screen
         name="signup"
         component={SignupScreen}
-        options={{ title: "Sign Up" }}
+        options={{ title: "Sign Up", ...TransitionPresets.SlideFromRightIOS }}
       />
       <Stack.Screen
         name="signin"
         component={SigninScreen}
-        options={{ title: "Sign In" }}
+        options={{ title: "Sign In", ...TransitionPresets.SlideFromRightIOS }}
       />
     </Stack.Navigator>
-  ) : props.isPHI ? (
+  ) : appMode === "phi" ? (
     <Stack.Navigator screenOptions={{ ...DEFAULT_STACK_NAVIGATION_OPTIONS }}>
       <Stack.Screen
         name="home"
         component={HomeScreen}
-        options={{ title: "Safe&Sound" }}
+        options={{
+          title: "Safe&Sound",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
       />
       <Stack.Screen
         name="search"
         component={SearchUserScreen}
-        options={{ title: "Search Users" }}
+        options={{
+          title: "Search Users",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
       />
       <Stack.Screen
         name="user"
         component={UserScreen}
-        options={{ title: "..." }}
+        options={{ title: "...", ...TransitionPresets.SlideFromRightIOS }}
       />
       <Stack.Screen
         name="test"
         component={NewTestResultScreen}
-        options={{ title: "Add New Test Result" }}
+        options={{
+          title: "Add New Test Result",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
       />
     </Stack.Navigator>
   ) : (
@@ -75,12 +96,18 @@ const mainNavigator = (props) => {
       <Stack.Screen
         name="home"
         component={HomeScreen}
-        options={{ title: "Safe&Sound" }}
+        options={{
+          title: "Safe&Sound",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
       />
       <Stack.Screen
         name="history"
         component={TestResultsScreen}
-        options={{ title: "Tests Results History" }}
+        options={{
+          title: "Tests Results History",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
       />
     </Stack.Navigator>
   );

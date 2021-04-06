@@ -1,19 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useContext, useEffect, useCallback } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/ui/customHeaderButton";
 import Colors from "../../theme/Colors";
+import AppContext from "../../context";
 
 const homeScreen = (props) => {
-  const [Type, setType] = useState("phi");
+  const { appMode } = useContext(AppContext);
 
   useEffect(() => {
     repaintHeaderButtons();
-  }, [repaintHeaderButtons]);
+  }, [appMode]);
 
-  const repaintHeaderButtons = useCallback(() => {
-    if (Type === "user") {
+  const repaintHeaderButtons = () => {
+    if (appMode === "user") {
       props.navigation.setOptions({
         headerRight: () => (
           <HeaderButtons HeaderButtonComponent={HeaderButton}>
@@ -36,7 +37,7 @@ const homeScreen = (props) => {
       });
     }
 
-    if (Type === "phi") {
+    if (appMode === "phi") {
       props.navigation.setOptions({
         headerRight: () => (
           <HeaderButtons HeaderButtonComponent={HeaderButton}>
@@ -65,7 +66,7 @@ const homeScreen = (props) => {
         ),
       });
     }
-  }, [Type]);
+  };
 
   return (
     <View>
