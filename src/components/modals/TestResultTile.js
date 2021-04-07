@@ -4,9 +4,9 @@ import { Ionicons } from "@expo/vector-icons";
 import theme from "../../theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
-const TILE_HEIGHT = 100;
+const TILE_HEIGHT = 120;
 
-const TestResultTile = ({ hospital, testedDate, issuedDate, result }) => {
+const TestResultTile = ({ hospital, testedDate, issuedDate, result, type }) => {
   return (
     <View style={styles.tileContainer}>
       <View style={styles.tileLeft}>
@@ -23,6 +23,7 @@ const TestResultTile = ({ hospital, testedDate, issuedDate, result }) => {
         >{`Issued By: ${hospital}`}</Text>
         <Text style={styles.txt}>{`Issued Date: ${issuedDate}`}</Text>
         <Text style={styles.txt}>{`Tested Date: ${testedDate}`}</Text>
+        <Text style={styles.txt}>{`Test Type: ${type.toUpperCase()}`}</Text>
       </View>
       <View style={styles.tileRight}>
         <Ionicons
@@ -49,12 +50,13 @@ const styles = StyleSheet.create({
   },
   tileContainer: {
     alignItems: "center",
-    borderColor: theme.colors.background,
+    borderColor: theme.colors.accent,
+    borderRadius: 5,
     borderWidth: 1,
     flexDirection: "row",
     height: TILE_HEIGHT,
     justifyContent: "space-between",
-    marginVertical: 5,
+    marginVertical: 7,
     paddingHorizontal: 20,
     width: WINDOW_WIDTH - 30,
   },

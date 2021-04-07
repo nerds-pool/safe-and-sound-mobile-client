@@ -104,7 +104,7 @@ const mainNavigator = (props) => {
         name="test"
         component={NewTestResultScreen}
         options={{
-          title: "Submit Report Status",
+          title: "Submit Test Result",
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />

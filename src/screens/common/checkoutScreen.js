@@ -43,28 +43,28 @@ export default signinScreen;
 
 const styles = StyleSheet.create({
   screen: {
-    justifyContent: "center",
     alignItems: "center",
+    justifyContent: "center",
     paddingTop: 0,
   },
   slider: {
+    backgroundColor: theme.colors.background,
     height: 50,
     width: WINDOWS_WIDTH - 60,
-    backgroundColor: theme.colors.background,
   },
   sliderWrapper: {
-    borderRadius: 10,
     borderColor: theme.colors.black,
+    borderRadius: 10,
     borderWidth: 1,
-    overflow: "hidden",
     marginTop: 40,
+    overflow: "hidden",
   },
   txt: {
     color: theme.colors.primary,
     fontSize: 20,
+    marginVertical: 20,
     textAlign: "center",
     width: WINDOWS_WIDTH - 60,
-    marginVertical: 20,
   },
   txtBold: {
     fontSize: 24,

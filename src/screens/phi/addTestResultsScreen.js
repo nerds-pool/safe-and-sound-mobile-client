@@ -9,6 +9,9 @@ const addTestResultsScreen = () => {
   return (
     <Screen>
       <TextInput style={theme.styles.txtInput} placeholder="NIC Number" />
+      <TextInput style={theme.styles.txtInput} placeholder="Issuer" />
+      <TextInput style={theme.styles.txtInput} placeholder="Issue Date" />
+      <TextInput style={theme.styles.txtInput} placeholder="Tested Date" />
       <View style={theme.styles.txtInput}>
         <Picker
           style={theme.styles.fit}
@@ -16,11 +19,24 @@ const addTestResultsScreen = () => {
           // eslint-disable-next-line no-unused-vars
           onValueChange={(itemValue, itemIndex) => {}}
         >
-          <Picker.Item label="PCR/Antigen Report Status" value={null} />
+          <Picker.Item label="Test Type" value={null} />
+          <Picker.Item label="PCR" value="pcr" />
+          <Picker.Item label="Antigen" value="antigen" />
+        </Picker>
+      </View>
+      <View style={theme.styles.txtInput}>
+        <Picker
+          style={theme.styles.fit}
+          selectedValue={null}
+          // eslint-disable-next-line no-unused-vars
+          onValueChange={(itemValue, itemIndex) => {}}
+        >
+          <Picker.Item label="Test Result" value={null} />
           <Picker.Item label="Negetive" value="negetive" />
           <Picker.Item label="Positive" value="positive" />
         </Picker>
       </View>
+
       <BigButton
         style={{ ...theme.styles.btn, ...styles.btn }}
         textStyle={styles.btnTxt}

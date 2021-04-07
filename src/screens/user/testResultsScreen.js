@@ -10,6 +10,7 @@ const testResultsScreen = () => {
       issuedDate={item.issuedDate}
       result={item.result}
       hospital={item.hospital}
+      type={item.type}
     />
   );
 
@@ -19,6 +20,7 @@ const testResultsScreen = () => {
         data={History}
         renderItem={renderReportStatusTile}
         keyExtractor={(item, index) => index.toString()}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
@@ -30,6 +32,5 @@ const styles = StyleSheet.create({
   screen: {
     alignItems: "center",
     flex: 1,
-    paddingTop: 20,
   },
 });
