@@ -3,5 +3,6 @@ export default {
   accent: "#888493",
   background: "#cbc7d3",
   white: "#ffffff",
-  black: "#000000"
+  black: "#000000",
+  link: "#47008e"
 }
