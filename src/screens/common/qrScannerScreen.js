@@ -13,7 +13,7 @@ import theme from "../../theme";
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const VIBRATION_DURATION_IN_MS = 100;
 
-const qrScannerScreen = () => {
+const qrScannerScreen = (props) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -28,6 +28,7 @@ const qrScannerScreen = () => {
     };
 
     console.log("Data to be send", addLocationBody);
+    props.navigation.navigate("checkout");
   };
 
   useEffect(() => {

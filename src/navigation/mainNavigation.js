@@ -10,6 +10,7 @@ import {
   SigninScreen,
   HomeScreen,
   QrScannerScreen,
+  CheckoutScreen,
   TestResultsScreen,
   SearchUserScreen,
   UserScreen,
@@ -74,7 +75,15 @@ const mainNavigator = (props) => {
         name="scanner"
         component={QrScannerScreen}
         options={{
-          title: "Check In",
+          title: "Safe&Sound",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <Stack.Screen
+        name="checkout"
+        component={CheckoutScreen}
+        options={{
+          title: "Safe&Sound",
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
@@ -114,7 +123,15 @@ const mainNavigator = (props) => {
         name="scanner"
         component={QrScannerScreen}
         options={{
-          title: "Check In",
+          title: "Safe&Sound",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
+      <Stack.Screen
+        name="checkout"
+        component={CheckoutScreen}
+        options={{
+          title: "Safe&Sound",
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
