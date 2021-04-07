@@ -15,6 +15,9 @@ export default StyleSheet.create({
     marginVertical: DEFAULT_V_MARGIN,
     width: FIELD_WIDTH,
   },
+  fit: {
+    flex: 1
+  },
   txt: {
     color: Colors.primary,
     marginVertical: DEFAULT_V_MARGIN,

@@ -21,7 +21,7 @@ export default function App() {
     <AppContext.Provider value={{ appMode, dispatchAppMode }}>
       <NavigationContainer>
         <StatusBar style="auto" />
-        <MainNavigation isGuest={true} />
+        <MainNavigation isGuest={false} />
       </NavigationContainer>
     </AppContext.Provider>
   );
