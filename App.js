@@ -7,7 +7,7 @@ import AppContext from "./src/context";
 import appReducer from "./src/context/reducer";
 import { SET_APP_TO_PHI_MODE } from "./src/context/actions.types";
 
-export default App = () => {
+export default function App() {
   const [appMode, dispatchAppMode] = useReducer(appReducer, "");
 
   useEffect(() => {
@@ -21,8 +21,8 @@ export default App = () => {
     <AppContext.Provider value={{ appMode, dispatchAppMode }}>
       <NavigationContainer>
         <StatusBar style="auto" />
-        <MainNavigation isGuest={false} />
+        <MainNavigation isGuest={true} />
       </NavigationContainer>
     </AppContext.Provider>
   );
-};
+}
