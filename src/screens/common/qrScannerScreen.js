@@ -11,7 +11,7 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import Colors from "../../theme/Colors";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
-const ONE_SECOND_IN_MS = 100;
+const VIBRATION_DURATION_IN_MS = 100;
 
 const qrScannerScreen = () => {
   const [hasPermission, setHasPermission] = useState(null);
@@ -20,7 +20,7 @@ const qrScannerScreen = () => {
   // eslint-disable-next-line no-unused-vars
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    Vibration.vibrate(ONE_SECOND_IN_MS);
+    Vibration.vibrate(VIBRATION_DURATION_IN_MS);
     const addLocationBody = {
       location: data.toString(),
       user: "6bdfgr5tyfgr4f789",
@@ -37,31 +37,30 @@ const qrScannerScreen = () => {
     })();
   }, []);
 
-  if (hasPermission === null) {
-    return <Text>Requesting for camera permission</Text>;
-  }
-  if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
-  }
-
   return (
     <View style={styles.screen}>
-      <BarCodeScanner
-        onBarCodeScanned={scanned ? null : handleBarCodeScanned}
-        style={[StyleSheet.absoluteFill, styles.scanner]}
-        barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-      >
-        <Text style={[styles.description, styles.descriptionTop]}>
-          Safe&Sound
-        </Text>
-        <Image
-          style={styles.qr}
-          source={require("../../../assets/qr-scanner-frame.png")}
-        />
-        <Text style={[styles.description, styles.descriptionBtm]}>
-          Scan QR code to check-in
-        </Text>
-      </BarCodeScanner>
+      {hasPermission === null ? (
+        <Text style={styles.description}>Requesting for camera permission</Text>
+      ) : hasPermission === false ? (
+        <Text style={styles.description}>No access to camera</Text>
+      ) : (
+        <BarCodeScanner
+          onBarCodeScanned={scanned ? null : handleBarCodeScanned}
+          style={[StyleSheet.absoluteFill, styles.scanner]}
+          barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
+        >
+          <Text style={[styles.description, styles.descriptionTop]}>
+            Safe&Sound
+          </Text>
+          <Image
+            style={styles.qr}
+            source={require("../../../assets/qr-scanner-frame.png")}
+          />
+          <Text style={[styles.description, styles.descriptionBtm]}>
+            Scan QR code to check-in
+          </Text>
+        </BarCodeScanner>
+      )}
     </View>
   );
 };
@@ -79,7 +78,7 @@ const styles = StyleSheet.create({
     marginBottom: "10%",
   },
   descriptionTop: {
-    fontSize: 30,
+    fontSize: 36,
     marginTop: "10%",
   },
   qr: {
@@ -96,9 +95,9 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   screen: {
+    alignItems: "center",
     backgroundColor: Colors.black,
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-end",
+    justifyContent: "center",
   },
 });
