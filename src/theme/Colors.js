@@ -4,5 +4,6 @@ export default {
   background: "#cbc7d3",
   white: "#ffffff",
   black: "#000000",
-  link: "#47008e"
-}
+  link: "#47008e",
+  red: "#ff0000",
+};

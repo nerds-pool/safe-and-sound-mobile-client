@@ -122,7 +122,7 @@ const mainNavigator = (props) => {
         name="history"
         component={TestResultsScreen}
         options={{
-          title: "Tests Results History",
+          title: "PCR/Antigen Results History",
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
