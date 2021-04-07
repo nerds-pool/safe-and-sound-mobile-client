@@ -19,7 +19,9 @@ const signinScreen = (props) => {
       >
         Sign In
       </BigButton>
-      <Text style={styles.txtLink}>Forgot password?</Text>
+      <Text style={{ ...theme.styles.txt, ...styles.txtLink }}>
+        Forgot password?
+      </Text>
       <Text style={theme.styles.txt}>
         {"Don't have account? "}
         <Text

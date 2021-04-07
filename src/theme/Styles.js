@@ -17,6 +17,7 @@ export default StyleSheet.create({
   },
   txt: {
     color: Colors.primary,
+    marginVertical: DEFAULT_V_MARGIN,
   },
   txtInput: {
     borderBottomColor: Colors.accent,

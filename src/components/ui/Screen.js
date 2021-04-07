@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexGrow: 1,
     justifyContent: "flex-start",
-    paddingTop: 30,
+    paddingTop: 20,
   },
 });
 
