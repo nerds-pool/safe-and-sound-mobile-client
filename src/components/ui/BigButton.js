@@ -20,7 +20,7 @@ const BigButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     alignContent: "center",
-    backgroundColor: Colors.accent,
+    backgroundColor: Colors.primary,
     borderRadius: 5,
     justifyContent: "center",
     marginVertical: 5,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   buttonText: {
-    color: Colors.primary,
+    color: Colors.white,
     textAlign: "center",
     textTransform: "uppercase",
   },

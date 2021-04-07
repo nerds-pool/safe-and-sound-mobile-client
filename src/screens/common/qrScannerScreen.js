@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import Colors from "../../theme/Colors";
+import theme from "../../theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const VIBRATION_DURATION_IN_MS = 100;
@@ -69,7 +69,7 @@ export default qrScannerScreen;
 
 const styles = StyleSheet.create({
   description: {
-    color: Colors.white,
+    color: theme.colors.white,
     textAlign: "center",
     width: "70%",
   },
@@ -89,14 +89,14 @@ const styles = StyleSheet.create({
   },
   scanner: {
     alignItems: "center",
-    backgroundColor: Colors.black,
+    backgroundColor: theme.colors.black,
     flex: 1,
     justifyContent: "center",
     padding: 8,
   },
   screen: {
     alignItems: "center",
-    backgroundColor: Colors.black,
+    backgroundColor: theme.colors.black,
     flex: 1,
     justifyContent: "center",
   },

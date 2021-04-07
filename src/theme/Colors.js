@@ -1,7 +1,8 @@
 export default {
   primary: "#352f44",
   accent: "#888493",
-  background: "#cbc7d3",
+  // background: "#cbc7d3",
+  background: "#EFEEF4",
   white: "#ffffff",
   black: "#000000",
   link: "#47008e",

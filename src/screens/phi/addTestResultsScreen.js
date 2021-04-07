@@ -5,7 +5,7 @@ import theme from "../../theme";
 import Screen from "../../components/ui/Screen";
 import BigButton from "../../components/ui/BigButton";
 
-const addTestResultsScreen = (props) => {
+const addTestResultsScreen = () => {
   return (
     <Screen>
       <TextInput style={theme.styles.txtInput} placeholder="NIC Number" />
@@ -13,6 +13,7 @@ const addTestResultsScreen = (props) => {
         <Picker
           style={theme.styles.fit}
           selectedValue={null}
+          // eslint-disable-next-line no-unused-vars
           onValueChange={(itemValue, itemIndex) => {}}
         >
           <Picker.Item label="PCR/Antigen Report Status" value={null} />

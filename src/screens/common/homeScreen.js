@@ -3,11 +3,12 @@ import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../../components/ui/customHeaderButton";
-import Colors from "../../theme/Colors";
 import AppContext from "../../context";
 import BigButton from "../../components/ui/BigButton";
+import theme from "../../theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
+const ELEVATION = 5;
 
 const homeScreen = (props) => {
   const { appMode } = useContext(AppContext);
@@ -21,14 +22,14 @@ const homeScreen = (props) => {
               title="History"
               IconComponent={Ionicons}
               iconName="document-text-outline"
-              color={Colors.accent}
+              color={theme.colors.accent}
               onPress={() => props.navigation.navigate("history")}
             />
             <Item
               title="Log Out"
               IconComponent={Ionicons}
               iconName="log-out-outline"
-              color={Colors.accent}
+              color={theme.colors.accent}
               onPress={() => {}}
             />
           </HeaderButtons>
@@ -44,21 +45,21 @@ const homeScreen = (props) => {
               title="Add Test Resut"
               IconComponent={Ionicons}
               iconName="create-outline"
-              color={Colors.accent}
+              color={theme.colors.accent}
               onPress={() => props.navigation.navigate("test")}
             />
             <Item
               title="Search"
               IconComponent={Ionicons}
               iconName="search-outline"
-              color={Colors.accent}
+              color={theme.colors.accent}
               onPress={() => props.navigation.navigate("search")}
             />
             <Item
               title="Log Out"
               IconComponent={Ionicons}
               iconName="log-out-outline"
-              color={Colors.accent}
+              color={theme.colors.accent}
               onPress={() => {}}
             />
           </HeaderButtons>
@@ -77,11 +78,16 @@ const homeScreen = (props) => {
 
   return (
     <View style={styles.screen}>
-      <Text style={styles.txt}>Scan the QR code at your visited location to check-in safely!</Text>
+      <View style={styles.txtWrapper}>
+        <Text style={styles.txt}>
+          Scan the QR code at your visited location to check-in safely!
+        </Text>
+      </View>
       <View style={styles.imgWrapper}>
         <Image
+          resizeMode="contain"
           style={styles.img}
-          source={require("../../../assets/home_transparent.png")}
+          source={require("../../../assets/hero.png")}
         />
       </View>
       <View style={styles.btnWrapper}>
@@ -97,32 +103,44 @@ export default homeScreen;
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: Colors.primary,
-    height: 60,
+    backgroundColor: theme.colors.primary,
+    height: 50,
+    width: WINDOW_WIDTH - 60,
   },
   btnWrapper: {
+    alignItems: "center",
+    backgroundColor: theme.colors.white,
+    elevation: ELEVATION,
     flex: 1,
-    width: WINDOW_WIDTH - 60,
+    width: WINDOW_WIDTH,
   },
   img: {
     height: "100%",
     width: "100%",
   },
   imgWrapper: {
-    flex: 5,
+    backgroundColor: theme.colors.white,
+    borderTopEndRadius: 30,
+    borderTopStartRadius: 30,
+    elevation: ELEVATION,
+    flex: 6,
     width: WINDOW_WIDTH,
   },
   screen: {
     alignItems: "center",
-    backgroundColor: Colors.white,
+    backgroundColor: theme.colors.background,
     flex: 1,
     justifyContent: "center",
   },
   txt: {
-    color: Colors.primary,
+    color: theme.colors.primary,
     fontSize: 18,
     marginTop: 30,
     padding: 20,
-    textAlign: "center"
-  }
+    textAlign: "center",
+  },
+  txtWrapper: {
+    backgroundColor: theme.colors.background,
+    flex: 2,
+  },
 });
