@@ -1,42 +1,41 @@
-import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Dimensions,
-  Pressable,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
+import React, { useState, useEffect } from "react";
+import { TextInput } from "react-native";
 import theme from "../../theme";
 import Screen from "../../components/ui/Screen";
 import Users from "../../dummy-data/users";
+import UserTile from "../../components/modals/UserTile";
 
-const { width: WINDOW_WIDTH } = Dimensions.get("window");
+const searchUserScreen = () => {
+  const [search, setSearch] = useState(null);
+  const [usersArray, setUsersArray] = useState([]);
 
-const UserResultTile = ({ name, onNavigate }) => {
-  return (
-    <Pressable onPress={onNavigate}>
-      <View style={styles.tileContainer}>
-        <Text>{name}</Text>
-        <Ionicons name="chevron-forward-outline" size={16} />
-      </View>
-    </Pressable>
-  );
-};
+  useEffect(() => {
+    const array = Users.filter((user) => user.id.toString().includes(search));
+    setUsersArray(array);
+  }, [search]);
 
-const searchUserScreen = (props) => {
+  const handleChangeText = (value) => {
+    setSearch(value);
+  };
+
   return (
     <Screen>
       <TextInput
         style={theme.styles.txtInput}
         placeholder="Enter NIC to Search a User"
+        onChangeText={handleChangeText}
+        value={search}
       />
-      {Users.map((user) => (
-        <UserResultTile
-          key={Users.indexOf(user)}
+      {usersArray.map((user) => (
+        <UserTile
+          key={usersArray.indexOf(user)}
           name={user.name}
-          onNavigate={() => props.navigation.navigate("user", { id: user.id })}
+          contact={user.contact}
+          email={user.email}
+          gender={user.gender}
+          profession={user.profession}
+          address={user.address}
+          city={user.city}
         />
       ))}
     </Screen>
@@ -44,17 +43,3 @@ const searchUserScreen = (props) => {
 };
 
 export default searchUserScreen;
-
-const styles = StyleSheet.create({
-  tileContainer: {
-    alignItems: "center",
-    borderColor: theme.colors.background,
-    borderWidth: 1,
-    flexDirection: "row",
-    height: 40,
-    justifyContent: "space-between",
-    marginVertical: 2,
-    paddingHorizontal: 10,
-    width: WINDOW_WIDTH - 30,
-  },
-});
