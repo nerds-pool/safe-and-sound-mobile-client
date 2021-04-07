@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
-import Colors from "../../theme/Colors";
 import BigButton from "../../components/ui/BigButton";
+import theme from "../../theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 
@@ -13,8 +13,9 @@ const startScreen = (props) => {
       </View>
       <View style={styles.imgWrapper}>
         <Image
+          resizeMode="contain"
           style={styles.img}
-          source={require("../../../assets/home_transparent.png")}
+          source={require("../../../assets/hero.png")}
         />
       </View>
       <View style={styles.btnWrapper}>
@@ -26,9 +27,9 @@ const startScreen = (props) => {
           {"Sign In"}
         </BigButton>
         <BigButton
-          style={{ ...styles.btn, ...styles.btnSOut }}
-          textStyle={styles.btnSOutTxt}
-          onPress={() => props.navigation.navigate("signup") }
+          style={{ ...styles.btn, ...styles.btnSUp }}
+          textStyle={styles.btnSUpTxt}
+          onPress={() => props.navigation.navigate("signup")}
         >
           {"Sign Up"}
         </BigButton>
@@ -41,19 +42,26 @@ export default startScreen;
 
 const styles = StyleSheet.create({
   btn: {
-    height: 60,
+    height: 50,
+    marginVertical: 5,
   },
   btnSIn: {
-    backgroundColor: Colors.background,
+    backgroundColor: theme.colors.primary,
   },
   btnSInTxt: {
-    color: Colors.primary,
+    color: theme.colors.background,
+    fontSize: 16,
+    fontWeight: "bold",
   },
-  btnSOut: {
-    backgroundColor: Colors.accent,
+  btnSUp: {
+    backgroundColor: theme.colors.background,
+    borderColor: theme.colors.background,
+    borderWidth: 1,
   },
-  btnSOutTxt: {
-    color: Colors.white,
+  btnSUpTxt: {
+    color: theme.colors.primary,
+    fontSize: 16,
+    fontWeight: "bold",
   },
   btnWrapper: {
     flex: 1,
@@ -69,19 +77,19 @@ const styles = StyleSheet.create({
   },
   screen: {
     alignItems: "center",
-    backgroundColor: Colors.primary,
+    backgroundColor: theme.colors.white,
     flex: 1,
     justifyContent: "center",
   },
   txt: {
-    color: Colors.background,
+    color: theme.colors.primary,
     fontSize: 36,
-    marginTop: 60,
+    fontWeight: "bold",
     textAlign: "center",
   },
   txtWrapper: {
     alignItems: "center",
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
   },
 });

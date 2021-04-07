@@ -44,9 +44,6 @@ const TestResultTile = ({ hospital, testedDate, issuedDate, result }) => {
 export default TestResultTile;
 
 const styles = StyleSheet.create({
-  green: {
-    color: theme.colors.green,
-  },
   red: {
     color: theme.colors.red,
   },

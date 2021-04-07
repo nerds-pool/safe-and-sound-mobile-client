@@ -21,12 +21,11 @@ const styles = StyleSheet.create({
   button: {
     alignContent: "center",
     backgroundColor: Colors.accent,
-    borderColor: Colors.primary,
     borderRadius: 5,
-    borderWidth: 0,
     justifyContent: "center",
+    marginVertical: 5,
     paddingHorizontal: 30,
-    paddingVertical: 12,
+    paddingVertical: 10,
   },
   buttonText: {
     color: Colors.primary,

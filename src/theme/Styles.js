@@ -1,12 +1,10 @@
 import Colors from "./Colors";
 import { Dimensions, StyleSheet } from "react-native";
 
-const { height: WINDOW_HEIGHT, width: WINDOW_WIDTH } = Dimensions.get("window");
+const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const FIELD_HEIGHT = 50;
 const FIELD_WIDTH = WINDOW_WIDTH - 30;
-const DEFAULT_RADIUS = 5;
 const DEFAULT_BORDER_WIDTH = 1;
-// const DEFAULT_V_PADDING = 10;
 const DEFAULT_V_MARGIN = 10;
 
 export default StyleSheet.create({
@@ -16,7 +14,7 @@ export default StyleSheet.create({
     width: FIELD_WIDTH,
   },
   fit: {
-    flex: 1
+    flex: 1,
   },
   txt: {
     color: Colors.primary,

@@ -97,7 +97,7 @@ export default homeScreen;
 
 const styles = StyleSheet.create({
   btn: {
-    backgroundColor: Colors.background,
+    backgroundColor: Colors.primary,
     height: 60,
   },
   btnWrapper: {
@@ -114,12 +114,12 @@ const styles = StyleSheet.create({
   },
   screen: {
     alignItems: "center",
-    backgroundColor: Colors.primary,
+    backgroundColor: Colors.white,
     flex: 1,
     justifyContent: "center",
   },
   txt: {
-    color: Colors.white,
+    color: Colors.primary,
     fontSize: 18,
     marginTop: 30,
     padding: 20,
