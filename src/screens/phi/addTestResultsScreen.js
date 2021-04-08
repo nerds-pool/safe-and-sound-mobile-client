@@ -1,9 +1,8 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import theme from "../../theme";
-import Screen from "../../components/ui/Screen";
-import BigButton from "../../components/ui/BigButton";
+import theme from "../../../lib/theme";
+import { Screen, BigButton } from "../../components/ui";
 
 const addTestResultsScreen = () => {
   return (

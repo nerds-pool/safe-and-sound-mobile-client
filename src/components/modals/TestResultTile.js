@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import theme from "../../theme";
+import theme from "../../../lib/theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const TILE_HEIGHT = 120;

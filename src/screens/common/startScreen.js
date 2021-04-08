@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
-import BigButton from "../../components/ui/BigButton";
-import theme from "../../theme";
+import { BigButton } from "../../components/ui";
+import theme from "../../../lib/theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 

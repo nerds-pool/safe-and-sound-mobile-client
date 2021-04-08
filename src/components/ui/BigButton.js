@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, Pressable, StyleSheet } from "react-native";
-import Colors from "../../theme/Colors";
+import theme from "../../../lib/theme";
 
 const BigButton = (props) => {
   return (
@@ -20,7 +20,7 @@ const BigButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     alignContent: "center",
-    backgroundColor: Colors.primary,
+    backgroundColor: theme.colors.primary,
     borderRadius: 5,
     justifyContent: "center",
     marginVertical: 5,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   buttonText: {
-    color: Colors.white,
+    color: theme.colors.white,
     textAlign: "center",
     textTransform: "uppercase",
   },

@@ -8,7 +8,7 @@ import {
   Dimensions,
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import theme from "../../theme";
+import theme from "../../../lib/theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const VIBRATION_DURATION_IN_MS = 100;

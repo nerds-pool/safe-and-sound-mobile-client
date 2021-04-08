@@ -2,10 +2,9 @@ import React, { useContext, useEffect } from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import HeaderButton from "../../components/ui/customHeaderButton";
 import AppContext from "../../context";
-import BigButton from "../../components/ui/BigButton";
-import theme from "../../theme";
+import { BigButton, CustomHeaderButton } from "../../components/ui";
+import theme from "../../../lib/theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const ELEVATION = 5;
@@ -17,7 +16,7 @@ const homeScreen = (props) => {
     if (appMode === "user") {
       props.navigation.setOptions({
         headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
             <Item
               title="History"
               IconComponent={Ionicons}
@@ -40,7 +39,7 @@ const homeScreen = (props) => {
     if (appMode === "phi") {
       props.navigation.setOptions({
         headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
             <Item
               title="Add Test Resut"
               IconComponent={Ionicons}

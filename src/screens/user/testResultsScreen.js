@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
+import { TestResultTile } from "../../components/modals";
 import History from "../../dummy-data/testResults";
-import TestResultTile from "../../components/modals/TestResultTile";
 
 const testResultsScreen = () => {
   const renderReportStatusTile = ({ item }) => (

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { TextInput } from "react-native";
-import theme from "../../theme";
-import Screen from "../../components/ui/Screen";
+import theme from "../../../lib/theme";
+import { Screen } from "../../components/ui";
+import { UserTile } from "../../components/modals";
 import Users from "../../dummy-data/users";
-import UserTile from "../../components/modals/UserTile";
 
 const searchUserScreen = () => {
   const [search, setSearch] = useState(null);

@@ -3,7 +3,7 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
-import Colors from "../theme/Colors";
+import theme from "../../lib/theme";
 import {
   StartScreen,
   SignupScreen,
@@ -22,9 +22,9 @@ const Stack = createStackNavigator();
 
 const DEFAULT_STACK_NAVIGATION_OPTIONS = {
   headerStyle: {
-    backgroundColor: Colors.primary,
+    backgroundColor: theme.colors.primary,
   },
-  headerTintColor: Colors.background,
+  headerTintColor: theme.colors.background,
 };
 
 const mainNavigator = (props) => {

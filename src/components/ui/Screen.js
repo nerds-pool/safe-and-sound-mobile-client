@@ -5,7 +5,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import theme from "../../theme";
+import theme from "../../../lib/theme";
 
 const Screen = (props) => {
   return (

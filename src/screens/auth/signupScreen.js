@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TextInput } from "react-native";
-import theme from "../../theme";
-import Screen from "../../components/ui/Screen";
-import BigButton from "../../components/ui/BigButton";
+import { Screen, BigButton } from "../../components/ui";
+import theme from "../../../lib/theme";
 
 const signupScreen = (props) => {
   return (
@@ -15,8 +14,16 @@ const signupScreen = (props) => {
       <TextInput style={theme.styles.txtInput} placeholder="Postal Code" />
       <TextInput style={theme.styles.txtInput} placeholder="Profession" />
       <TextInput style={theme.styles.txtInput} placeholder="Email" />
-      <TextInput style={theme.styles.txtInput} placeholder="Password" secureTextEntry />
-      <TextInput style={theme.styles.txtInput} placeholder="Confirm Password" secureTextEntry />
+      <TextInput
+        style={theme.styles.txtInput}
+        placeholder="Password"
+        secureTextEntry
+      />
+      <TextInput
+        style={theme.styles.txtInput}
+        placeholder="Confirm Password"
+        secureTextEntry
+      />
       <BigButton
         style={{ ...theme.styles.btn, ...styles.btn }}
         textStyle={styles.btnTxt}

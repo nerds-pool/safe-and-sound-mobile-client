@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
-import theme from "../../theme";
-import Screen from "../../components/ui/Screen";
+import theme from "../../../lib/theme";
+import { Screen } from "../../components/ui";
 import Slider from "@react-native-community/slider";
 
 const { width: WINDOWS_WIDTH } = Dimensions.get("window");
