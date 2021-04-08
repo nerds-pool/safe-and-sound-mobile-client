@@ -1,13 +1,23 @@
 import React from "react";
 import { StyleSheet, Text, TextInput } from "react-native";
+import { useFormFields } from "../../hooks";
+import { BigButton, Screen } from "../../components/ui";
 import theme from "../../theme";
-import Screen from "../../components/ui/Screen";
-import BigButton from "../../components/ui/BigButton";
 
 const signinScreen = (props) => {
+  const [formFields, dispatchFormFields] = useFormFields({
+    nic: "",
+    password: "",
+  });
+
   return (
     <Screen>
-      <TextInput style={theme.styles.txtInput} placeholder="NIC Number" />
+      <TextInput
+        style={theme.styles.txtInput}
+        placeholder="NIC Number"
+        value={formFields.nic}
+        onChangeText={(value) => dispatchFormFields(value)("nic")}
+      />
       <TextInput
         style={theme.styles.txtInput}
         placeholder="Password"
