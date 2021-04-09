@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput } from "react-native";
 import { BigButton, Screen } from "../../components/ui";
 import { useFormFields, useFormValidation } from "../../../lib/hooks";
 import {
-  isOnlyNumbers,
+  isNumbersOnly,
   checkExactLength,
   checkMinMaxLength,
 } from "../../../lib/validation";
@@ -24,7 +24,7 @@ const signinScreen = (props) => {
     console.log("validating", key);
 
     if (key === "nic") {
-      if (!checkExactLength(nic, 11) || !isOnlyNumbers.test(parseInt(nic))) {
+      if (!checkExactLength(nic, 11) || !isNumbersOnly(nic)) {
         dispatchFormValidation(false, "Invalid NIC")("nic");
         return;
       }
@@ -67,6 +67,7 @@ const signinScreen = (props) => {
         value={formFields.nic}
         onChangeText={(value) => dispatchFormFields(value)("nic")}
         onEndEditing={() => handleValidation("nic")}
+        keyboardType="number-pad"
       />
       <Text style={theme.styles.txtError}>{fromValidation.nic[1]}</Text>
       <TextInput
