@@ -21,6 +21,7 @@ const signinScreen = (props) => {
 
   const handleValidation = (key) => {
     const { nic, password } = formFields;
+    console.log("validating", key);
 
     if (key === "nic") {
       if (!checkExactLength(nic, 11) || !isOnlyNumbers.test(parseInt(nic))) {
@@ -43,14 +44,17 @@ const signinScreen = (props) => {
   };
 
   const handleSubmit = () => {
-    console.log(`Validations`, {
-      nic: fromValidation.nic[0],
-      passowrd: fromValidation.password[0],
-    });
+    let isSubmissionValid = true;
 
     for (const prop in fromValidation) {
-      if (!prop[0]) return;
+      if (fromValidation[prop][0] === false) {
+        handleValidation(prop.toString());
+        isSubmissionValid = false;
+        return;
+      }
     }
+
+    if (!isSubmissionValid) return;
 
     console.log("Body", formFields);
   };
