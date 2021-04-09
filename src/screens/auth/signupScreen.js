@@ -139,10 +139,10 @@ const signupScreen = (props) => {
     }
 
     if (key === "password") {
-      if (!checkMinMaxLength(password, { min: 6, max: 12 })) {
+      if (!checkMinMaxLength(password, { min: 6, max: 20 })) {
         dispatchFormValidation(
           false,
-          "Password length should between 6 and 12"
+          "Password length should between 6 and 20"
         )("password");
         return;
       }
