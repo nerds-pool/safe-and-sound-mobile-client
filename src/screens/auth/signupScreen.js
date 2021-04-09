@@ -5,7 +5,6 @@ import DatePickerModel from "react-native-modal-datetime-picker";
 import { Screen, BigButton } from "../../components/ui";
 import { useFormFields, useFormValidation } from "../../../lib/hooks";
 import {
-  isOnlyNumbers,
   checkExactLength,
   checkMinMaxLength,
   isEmpty,
@@ -108,7 +107,7 @@ const signupScreen = (props) => {
         dispatchFormValidation(false, "NIC is required!")("nic");
         return;
       }
-      if (!checkExactLength(nic, 11) || !isOnlyNumbers.test(parseInt(nic))) {
+      if (!checkExactLength(nic, 11) || !isNumbersOnly(nic)) {
         dispatchFormValidation(false, "Invalid NIC")("nic");
         return;
       }
