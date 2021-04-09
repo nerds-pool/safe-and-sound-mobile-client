@@ -43,16 +43,16 @@ const signinScreen = (props) => {
   };
 
   const handleSubmit = () => {
-    const { nic, password } = formFields;
-
     console.log(`Validations`, {
       nic: fromValidation.nic[0],
       passowrd: fromValidation.password[0],
     });
 
-    if (!fromValidation.nic[0] || !fromValidation.password[0]) return;
+    for (const prop in fromValidation) {
+      if (!prop[0]) return;
+    }
 
-    console.log("Body", { nic, password });
+    console.log("Body", formFields);
   };
 
   return (
