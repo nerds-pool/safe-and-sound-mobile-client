@@ -63,7 +63,7 @@ const signinScreen = (props) => {
     <Screen>
       <TextInput
         style={theme.styles.txtInput}
-        placeholder="NIC Number"
+        placeholder="NIC Number (e.g. 19XXXXXXXXX/20XXXXXXXXX)"
         value={formFields.nic}
         onChangeText={(value) => dispatchFormFields(value)("nic")}
         onEndEditing={() => handleValidation("nic")}
