@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     dispatchAppMode({
       type: SET_APP_TO_PHI_MODE,
-      payload: "phi",
+      payload: "user",
     });
   }, [dispatchAppMode, SET_APP_TO_PHI_MODE]);
 
@@ -21,7 +21,7 @@ export default function App() {
     <AppContext.Provider value={{ appMode, dispatchAppMode }}>
       <NavigationContainer>
         <StatusBar style="auto" />
-        <MainNavigation isGuest={true} />
+        <MainNavigation isGuest={false} />
       </NavigationContainer>
     </AppContext.Provider>
   );

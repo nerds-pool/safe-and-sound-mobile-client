@@ -25,6 +25,7 @@ const searchUserScreen = () => {
         placeholder="Enter NIC to Search a User"
         onChangeText={handleChangeText}
         value={search}
+        keyboardType="number-pad"
       />
       {usersArray.map((user) => (
         <UserTile
