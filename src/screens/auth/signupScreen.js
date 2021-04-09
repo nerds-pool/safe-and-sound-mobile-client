@@ -92,6 +92,9 @@ const signupScreen = (props) => {
       affiliation,
       gender,
     } = formFields;
+
+    console.log("validating", key);
+
     if (key === "name") {
       if (isEmpty(name)) {
         dispatchFormValidation(false, "Name is required!")("name");
@@ -211,30 +214,35 @@ const signupScreen = (props) => {
   };
 
   const handleSubmit = () => {
-    console.log(`Validations`, {
-      nic: fromValidation.nic[0],
-      passowrd: fromValidation.password[0],
-    });
+    let isValidSubmission = true;
 
     if (regType === "phi") {
-      const phiFields = { ...fromValidation, profession: null };
-      console.log("phiFields", phiFields);
+      const phiFields = { ...fromValidation, profession: [true, ""] };
       for (const prop in phiFields) {
-        if (!prop[0]) return;
+        if (phiFields[prop][0] === false) {
+          handleValidation(prop.toString());
+          isValidSubmission = false;
+          return;
+        }
       }
     }
 
     if (regType === "user") {
       const userFields = {
         ...fromValidation,
-        phiRegNo: null,
-        affiliation: null,
+        phiRegNo: [true, ""],
+        affiliation: [true, ""],
       };
-      console.log("userFields", userFields);
       for (const prop in userFields) {
-        if (!prop[0]) return;
+        if (userFields[prop][0] === false) {
+          handleValidation(prop.toString());
+          isValidSubmission = false;
+          return;
+        }
       }
     }
+
+    if (!isValidSubmission) return;
 
     console.log("Body", formFields);
   };
@@ -278,6 +286,7 @@ const signupScreen = (props) => {
             placeholder="Full Name"
             value={formFields.name}
             onChangeText={(value) => dispatchFormFields(value)("name")}
+            onEndEditing={() => handleValidation("name")}
           />
           <Text style={theme.styles.txtError}>{fromValidation.name[1]}</Text>
           <TextInput
@@ -285,6 +294,7 @@ const signupScreen = (props) => {
             placeholder="NIC Number (e.g. 19XXXXXXXXX/20XXXXXXXXX)"
             value={formFields.nic}
             onChangeText={(value) => dispatchFormFields(value)("nic")}
+            onEndEditing={() => handleValidation("nic")}
             keyboardType="number-pad"
           />
           <Text style={theme.styles.txtError}>{fromValidation.nic[1]}</Text>
@@ -295,6 +305,7 @@ const signupScreen = (props) => {
                 placeholder="Register Number"
                 value={formFields.phiRegNo}
                 onChangeText={(value) => dispatchFormFields(value)("phiRegNo")}
+                onEndEditing={() => handleValidation("phiRegNo")}
               />
               <Text style={theme.styles.txtError}>
                 {fromValidation.phiRegNo[1]}
@@ -307,6 +318,7 @@ const signupScreen = (props) => {
             placeholder="Contact"
             value={formFields.contact}
             onChangeText={(value) => dispatchFormFields(value)("contact")}
+            onEndEditing={() => handleValidation("contact")}
             keyboardType="number-pad"
           />
           <Text style={theme.styles.txtError}>{fromValidation.contact[1]}</Text>
@@ -316,6 +328,7 @@ const signupScreen = (props) => {
             secureTextEntry
             value={formFields.password}
             onChangeText={(value) => dispatchFormFields(value)("password")}
+            onEndEditing={() => handleValidation("password")}
           />
           <Text style={theme.styles.txtError}>
             {fromValidation.password[1]}
@@ -332,6 +345,7 @@ const signupScreen = (props) => {
             placeholder="Date of Birth"
             value={formFields.dob[1]}
             onFocus={toggleShowDatePicker}
+            onEndEditing={() => handleValidation("daob")}
           />
           <Text style={theme.styles.txtError}>{fromValidation.dob[1]}</Text>
           <TextInput
@@ -339,6 +353,7 @@ const signupScreen = (props) => {
             placeholder="Address"
             value={formFields.address}
             onChangeText={(value) => dispatchFormFields(value)("address")}
+            onEndEditing={() => handleValidation("address")}
           />
           <Text style={theme.styles.txtError}>{fromValidation.address[1]}</Text>
           <TextInput
@@ -346,6 +361,7 @@ const signupScreen = (props) => {
             placeholder="City"
             value={formFields.city}
             onChangeText={(value) => dispatchFormFields(value)("city")}
+            onEndEditing={() => handleValidation("city")}
           />
           <Text style={theme.styles.txtError}>{fromValidation.city[1]}</Text>
           <TextInput
@@ -353,6 +369,7 @@ const signupScreen = (props) => {
             placeholder="Postal Code"
             value={formFields.postal}
             onChangeText={(value) => dispatchFormFields(value)("postal")}
+            onEndEditing={() => handleValidation("postal")}
             keyboardType="number-pad"
           />
           <Text style={theme.styles.txtError}>{fromValidation.postal[1]}</Text>
@@ -365,6 +382,7 @@ const signupScreen = (props) => {
                 onChangeText={(value) =>
                   dispatchFormFields(value)("profession")
                 }
+                onEndEditing={() => handleValidation("profession")}
               />
               <Text style={theme.styles.txtError}>
                 {fromValidation.profession[1]}
@@ -380,6 +398,7 @@ const signupScreen = (props) => {
                 onChangeText={(value) =>
                   dispatchFormFields(value)("affiliation")
                 }
+                onEndEditing={() => handleValidation("affiliation")}
               />
               <Text style={theme.styles.txtError}>
                 {fromValidation.affiliation[1]}
