@@ -11,6 +11,7 @@ import {
   isNumbersOnly,
 } from "../../../lib/validation";
 import theme from "../../../lib/theme";
+import api from "../../api";
 
 const signupScreen = (props) => {
   const [regType, setRegType] = useState(null);
@@ -212,38 +213,96 @@ const signupScreen = (props) => {
     }
   };
 
-  const handleSubmit = () => {
-    let isValidSubmission = true;
+  const handleSubmit = async () => {
+    console.log("Inside hanlde submit");
+    // let isValidSubmission = true;
 
-    if (regType === "phi") {
-      const phiFields = { ...fromValidation, profession: [true, ""] };
-      for (const prop in phiFields) {
-        if (phiFields[prop][0] === false) {
-          handleValidation(prop.toString());
-          isValidSubmission = false;
-          return;
-        }
-      }
-    }
+    // if (regType === "phi") {
+    //   const phiFields = { ...fromValidation, profession: [true, ""] };
+    //   for (const prop in phiFields) {
+    //     if (phiFields[prop][0] === false) {
+    //       handleValidation(prop.toString());
+    //       isValidSubmission = false;
+    //       return;
+    //     }
+    //   }
+    // }
 
-    if (regType === "user") {
-      const userFields = {
-        ...fromValidation,
-        phiRegNo: [true, ""],
-        affiliation: [true, ""],
-      };
-      for (const prop in userFields) {
-        if (userFields[prop][0] === false) {
-          handleValidation(prop.toString());
-          isValidSubmission = false;
-          return;
-        }
-      }
-    }
+    // if (regType === "user") {
+    //   const userFields = {
+    //     ...fromValidation,
+    //     phiRegNo: [true, ""],
+    //     affiliation: [true, ""],
+    //   };
+    //   for (const prop in userFields) {
+    //     if (userFields[prop][0] === false) {
+    //       handleValidation(prop.toString());
+    //       isValidSubmission = false;
+    //       return;
+    //     }
+    //   }
+    // }
 
-    if (!isValidSubmission) return;
+    // if (!isValidSubmission) return;
 
     console.log("Body", formFields);
+
+    const {
+      name,
+      nic,
+      phiRegNo,
+      contact,
+      password,
+      dob,
+      address,
+      city,
+      postal,
+      profession,
+      affiliation,
+      gender,
+    } = formFields;
+
+    const body =
+      regType === "phi"
+        ? {
+            name,
+            nic,
+            phiRegNo,
+            contact,
+            password,
+            dob: dob[0],
+            address: {
+              line: address,
+              city,
+              postal,
+            },
+            affiliation,
+            gender,
+            role: 49,
+          }
+        : {
+            name,
+            nic,
+            contact,
+            password,
+            dob: dob[0],
+            address: {
+              line: address,
+              city,
+              postal,
+            },
+            profession,
+            gender,
+          };
+
+    try {
+      const { data } = await api.post.signup(body);
+      if (data && !data.success) throw new Error(data.msg);
+      console.log("data", data);
+      props.navigation.replace("signin");
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (

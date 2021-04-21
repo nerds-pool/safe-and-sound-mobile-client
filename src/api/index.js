@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "https://safe-and-sound.netlify.app/.netlify/functions/api",
+  baseURL: "http://192.168.8.102:9000/.netlify/functions/api",
   timeout: 10000,
 });
 
 const api = {
   post: {
-    signup: async (body) => await http.post("/auth/signup", body),
+    signup: (body) => http.post("/auth/signup", body),
     signin: async (body) => await http.post("/auth/signin", body),
     add_new_visit: async (body) => await http.post("/visit/add", body),
   },
