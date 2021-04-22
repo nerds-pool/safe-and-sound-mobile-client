@@ -1,17 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import theme from "../../../lib/theme";
-import { Screen } from "../../components/ui";
+import { Loading, Screen } from "../../components/ui";
 import Slider from "@react-native-community/slider";
+import api from "../../api";
 
 const { width: WINDOWS_WIDTH } = Dimensions.get("window");
 
-const signinScreen = (props) => {
-  const handleValueChange = (value) => {
+const checkoutScreen = (props) => {
+  const [loading, setloading] = useState(false);
+
+  const handleValueChange = async (value) => {
     if (value === 1) {
-      props.navigation.navigate("home");
+      try {
+        setloading(true);
+        const { data } = await api.patch.checkout();
+        if (!data.success) throw new Error(data.msg);
+        props.navigation.navigate("home");
+      } catch (error) {
+        alert("Oops! " + error.message);
+      } finally {
+        setloading(false);
+      }
     }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <Screen containerStyle={styles.screen}>
@@ -39,7 +53,7 @@ const signinScreen = (props) => {
   );
 };
 
-export default signinScreen;
+export default checkoutScreen;
 
 const styles = StyleSheet.create({
   screen: {

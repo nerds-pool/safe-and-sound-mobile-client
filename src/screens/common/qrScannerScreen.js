@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import theme from "../../../lib/theme";
+import api from "../../api";
+import { GlobalContext } from "../../context";
+import { Loading } from "../../components/ui";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const VIBRATION_DURATION_IN_MS = 100;
@@ -16,19 +19,32 @@ const VIBRATION_DURATION_IN_MS = 100;
 const qrScannerScreen = (props) => {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const { userState } = useContext(GlobalContext);
 
   // eslint-disable-next-line no-unused-vars
-  const handleBarCodeScanned = ({ type, data }) => {
+  const handleBarCodeScanned = async ({ type, data }) => {
     setScanned(true);
     Vibration.vibrate(VIBRATION_DURATION_IN_MS);
     const addLocationBody = {
       location: data.toString(),
-      user: "6bdfgr5tyfgr4f789",
+      user: userState.id,
       arrival: new Date().getTime().toString(),
     };
 
     console.log("Data to be send", addLocationBody);
-    props.navigation.navigate("checkout");
+
+    try {
+      setLoading(true);
+      const { data } = await api.put.add_new_visit(addLocationBody);
+      if (!data.success) throw new Error(data.msg ?? "Somehing went wrong...");
+      props.navigation.navigate("checkout");
+    } catch (error) {
+      alert("Oops! " + error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -37,6 +53,8 @@ const qrScannerScreen = (props) => {
       setHasPermission(status === "granted");
     })();
   }, []);
+
+  if (loading) return <Loading />;
 
   return (
     <View style={styles.screen}>

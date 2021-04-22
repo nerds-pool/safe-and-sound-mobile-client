@@ -9,7 +9,6 @@ const api = {
   post: {
     signup: (body) => http.post("/auth/signup", body),
     signin: (body) => http.post("/auth/signin", body),
-    add_new_visit: (body) => http.post("/visit/add", body),
   },
   get: {
     fetch_test_results: (nic) => http.get(`/user/tests/${nic}`),
@@ -18,6 +17,10 @@ const api = {
   put: {
     update_test_results: (nic, body) =>
       http.put(`/user/health-status/${nic}`, body),
+    add_new_visit: (body) => http.put("/visit/add", body),
+  },
+  patch: {
+    checkout: (body) => http.patch("/visit/checkout", body),
   },
 };
 
