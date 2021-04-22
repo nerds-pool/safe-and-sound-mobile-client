@@ -16,6 +16,7 @@ import api from "../../api";
 const signupScreen = (props) => {
   const [regType, setRegType] = useState(null);
   const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formFields, dispatchFormFields] = useFormFields({
     name: "",
     nic: "",
@@ -108,7 +109,7 @@ const signupScreen = (props) => {
         dispatchFormValidation(false, "NIC is required!")("nic");
         return;
       }
-      if (!checkExactLength(nic, 11) || !isNumbersOnly(nic)) {
+      if (!checkExactLength(nic, 12) || !isNumbersOnly(nic)) {
         dispatchFormValidation(false, "Invalid NIC")("nic");
         return;
       }
@@ -296,14 +297,24 @@ const signupScreen = (props) => {
           };
 
     try {
+      setLoading(true);
       const { data } = await api.post.signup(body);
       if (data && !data.success) throw new Error(data.msg);
       console.log("data", data);
       props.navigation.replace("signin");
     } catch (error) {
-      alert(error.message);
+      alert("Oops! " + error.message);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading)
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
 
   return (
     <Screen>
