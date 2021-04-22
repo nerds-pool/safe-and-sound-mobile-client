@@ -13,7 +13,6 @@ import {
   CheckoutScreen,
   TestResultsScreen,
   SearchUserScreen,
-  UserScreen,
   NewTestResultScreen,
 } from "../screens";
 import AppContext from "../context";
@@ -94,11 +93,6 @@ const mainNavigator = (props) => {
           title: "Search Users",
           ...TransitionPresets.SlideFromRightIOS,
         }}
-      />
-      <Stack.Screen
-        name="user"
-        component={UserScreen}
-        options={{ title: "...", ...TransitionPresets.SlideFromRightIOS }}
       />
       <Stack.Screen
         name="test"
