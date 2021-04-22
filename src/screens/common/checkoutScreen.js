@@ -18,7 +18,7 @@ const checkoutScreen = (props) => {
         setloading(true);
         const body = {
           nic: userState.nic,
-          departure: Date.now(),
+          departure: new Date().getTime().toString(),
           visitId: props.route.params.visit,
         };
         const { data } = await api.patch.checkout(body);
