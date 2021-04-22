@@ -1,11 +1,4 @@
-import { useContext } from "react";
-import { GlobalContext } from "../context";
 import axios from "axios";
-
-const fetchSignToken = () => {
-  const { userState} = useContext(GlobalContext);
-  return userState.signToken
-};
 
 const http = axios.create({
   baseURL: "http://192.168.8.102:9000/.netlify/functions/api",
@@ -14,7 +7,7 @@ const http = axios.create({
 
 http.interceptors.request.use(
   async (config) => {
-    const signToken = fetchSignToken();
+    const signToken = localStorage.getItem("signToken");
     if (signToken) {
       config.headers["Authorization"] = `Bearer ${signToken}`;
     }
