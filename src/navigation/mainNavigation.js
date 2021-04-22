@@ -26,20 +26,15 @@ const DEFAULT_STACK_NAVIGATION_OPTIONS = {
   headerTintColor: theme.colors.background,
 };
 
-const mainNavigator = (props) => {
+const mainNavigator = () => {
   const { appMode } = useContext(AppContext);
 
   React.useEffect(() => console.log("App Mode in main nav", appMode), [
     appMode,
   ]);
 
-  return props.isGuest ? (
-    <Stack.Navigator
-      screenOptions={{
-        ...DEFAULT_STACK_NAVIGATION_OPTIONS,
-        ...TransitionPresets.SlideFromRightIOS,
-      }}
-    >
+  return (
+    <Stack.Navigator screenOptions={{ ...DEFAULT_STACK_NAVIGATION_OPTIONS }}>
       <Stack.Screen
         name="start"
         component={StartScreen}
@@ -59,9 +54,6 @@ const mainNavigator = (props) => {
         component={SigninScreen}
         options={{ title: "Sign In", ...TransitionPresets.SlideFromRightIOS }}
       />
-    </Stack.Navigator>
-  ) : appMode === "phi" ? (
-    <Stack.Navigator screenOptions={{ ...DEFAULT_STACK_NAVIGATION_OPTIONS }}>
       <Stack.Screen
         name="home"
         component={HomeScreen}
@@ -86,57 +78,37 @@ const mainNavigator = (props) => {
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
-      <Stack.Screen
-        name="search"
-        component={SearchUserScreen}
-        options={{
-          title: "Search Users",
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-      />
-      <Stack.Screen
-        name="test"
-        component={NewTestResultScreen}
-        options={{
-          title: "Submit Test Result",
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-      />
-    </Stack.Navigator>
-  ) : (
-    <Stack.Navigator screenOptions={{ ...DEFAULT_STACK_NAVIGATION_OPTIONS }}>
-      <Stack.Screen
-        name="home"
-        component={HomeScreen}
-        options={{
-          title: "Safe&Sound",
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-      />
-      <Stack.Screen
-        name="scanner"
-        component={QrScannerScreen}
-        options={{
-          title: "Safe&Sound",
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-      />
-      <Stack.Screen
-        name="checkout"
-        component={CheckoutScreen}
-        options={{
-          title: "Safe&Sound",
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-      />
-      <Stack.Screen
-        name="history"
-        component={TestResultsScreen}
-        options={{
-          title: "PCR/Antigen Results History",
-          ...TransitionPresets.SlideFromRightIOS,
-        }}
-      />
+      {appMode === "phi" ? (
+        <>
+          <Stack.Screen
+            name="search"
+            component={SearchUserScreen}
+            options={{
+              title: "Search Users",
+              ...TransitionPresets.SlideFromRightIOS,
+            }}
+          />
+          <Stack.Screen
+            name="test"
+            component={NewTestResultScreen}
+            options={{
+              title: "Submit Test Result",
+              ...TransitionPresets.SlideFromRightIOS,
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <Stack.Screen
+            name="history"
+            component={TestResultsScreen}
+            options={{
+              title: "PCR/Antigen Results History",
+              ...TransitionPresets.SlideFromRightIOS,
+            }}
+          />
+        </>
+      )}
     </Stack.Navigator>
   );
 };

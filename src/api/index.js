@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const http = axios.create({
-  baseURL: "https://safe-and-sound.netlify.app/.netlify/functions/api",
+  baseURL: "http://192.168.8.102:9000/.netlify/functions/api",
   timeout: 10000,
 });
 

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput } from "react-native";
-import { BigButton, Screen } from "../../components/ui";
+import { BigButton, Screen, Loading } from "../../components/ui";
 import { useFormFields, useFormValidation } from "../../../lib/hooks";
 import {
   isNumbersOnly,
@@ -8,8 +8,10 @@ import {
   checkMinMaxLength,
 } from "../../../lib/validation";
 import theme from "../../../lib/theme";
+import api from "../../api";
 
 const signinScreen = (props) => {
+  const [loading, setLoading] = useState(false);
   const [formFields, dispatchFormFields] = useFormFields({
     nic: "",
     password: "",
@@ -24,7 +26,7 @@ const signinScreen = (props) => {
     console.log("validating", key);
 
     if (key === "nic") {
-      if (!checkExactLength(nic, 11) || !isNumbersOnly(nic)) {
+      if (!checkExactLength(nic, 12) || !isNumbersOnly(nic)) {
         dispatchFormValidation(false, "Invalid NIC")("nic");
         return;
       }
@@ -43,7 +45,7 @@ const signinScreen = (props) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     let isSubmissionValid = true;
 
     for (const prop in fromValidation) {
@@ -57,7 +59,23 @@ const signinScreen = (props) => {
     if (!isSubmissionValid) return;
 
     console.log("Body", formFields);
+
+    const { nic, password } = formFields;
+
+    try {
+      setLoading(true);
+      const { data } = await api.post.signin({ nic, password });
+      if (data && !data.success) throw new Error(data.msg);
+      console.log("data", data);
+      props.navigation.replace("home");
+    } catch (error) {
+      alert("Oops! " + error.message);
+    } finally {
+      setLoading(false);
+    }
   };
+
+  if (loading) return <Loading />;
 
   return (
     <Screen>
