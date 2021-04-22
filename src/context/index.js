@@ -1,5 +1,25 @@
-import { createContext } from "react";
+import React, { createContext, useReducer } from "react";
+import user from "./reducers/userReducer";
+import token from "./reducers/tokenReducer";
+import userSlice from "./slices/userSlice";
+import tokenSlice from "./slices/tokenSlice";
 
-const AppContext = createContext();
+export const GlobalContext = createContext({});
 
-export default AppContext;
+export const GlobalProvider = ({ children }) => {
+  const [userState, dispatchUser] = useReducer(user, userSlice);
+  const [tokenState, dispatchToken] = useReducer(token, tokenSlice);
+
+  return (
+    <GlobalContext.Provider
+      value={{
+        userState,
+        tokenState,
+        dispatchUser,
+        dispatchToken,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};

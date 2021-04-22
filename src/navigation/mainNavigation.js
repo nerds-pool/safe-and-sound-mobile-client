@@ -15,7 +15,7 @@ import {
   SearchUserScreen,
   NewTestResultScreen,
 } from "../screens";
-import AppContext from "../context";
+import { GlobalContext } from "../context";
 
 const Stack = createStackNavigator();
 
@@ -27,11 +27,11 @@ const DEFAULT_STACK_NAVIGATION_OPTIONS = {
 };
 
 const mainNavigator = () => {
-  const { appMode } = useContext(AppContext);
+  const { userState } = useContext(GlobalContext);
 
-  React.useEffect(() => console.log("App Mode in main nav", appMode), [
-    appMode,
-  ]);
+  React.useEffect(() => {
+    console.log("App Mode in main nav", userState.mode);
+  }, [userState]);
 
   return (
     <Stack.Navigator screenOptions={{ ...DEFAULT_STACK_NAVIGATION_OPTIONS }}>
@@ -78,7 +78,7 @@ const mainNavigator = () => {
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
-      {appMode === "phi" ? (
+      {userState.mode === "phi" ? (
         <>
           <Stack.Screen
             name="search"

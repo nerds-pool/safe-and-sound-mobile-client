@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, Text, TextInput } from "react-native";
 import { BigButton, Screen, Loading } from "../../components/ui";
 import { useFormFields, useFormValidation } from "../../../lib/hooks";
@@ -9,6 +9,8 @@ import {
 } from "../../../lib/validation";
 import theme from "../../../lib/theme";
 import api from "../../api";
+import { setMode, setTokens, setUser } from "../../context/actions";
+import { GlobalContext } from "../../context";
 
 const signinScreen = (props) => {
   const [loading, setLoading] = useState(false);
@@ -20,6 +22,7 @@ const signinScreen = (props) => {
     nic: [false, ""],
     password: [false, ""],
   });
+  const { dispatchUser, dispatchToken } = useContext(GlobalContext);
 
   const handleValidation = (key) => {
     const { nic, password } = formFields;
@@ -67,6 +70,16 @@ const signinScreen = (props) => {
       const { data } = await api.post.signin({ nic, password });
       if (data && !data.success) throw new Error(data.msg);
       console.log("data", data);
+      const userMode = data.result.role === 49 ? "phi" : "user";
+      dispatchUser(
+        setUser({
+          id: data.result.id,
+          nic: data.result.nic,
+          role: data.result.role,
+        })
+      );
+      dispatchUser(setMode(userMode));
+      dispatchToken(setTokens(data.result.signToken));
       props.navigation.replace("home");
     } catch (error) {
       alert("Oops! " + error.message);

@@ -2,18 +2,20 @@ import React, { useContext, useEffect } from "react";
 import { Text, View, StyleSheet, Dimensions, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import AppContext from "../../context";
 import { BigButton, CustomHeaderButton } from "../../components/ui";
 import theme from "../../../lib/theme";
+import { GlobalContext } from "../../context";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 const ELEVATION = 5;
 
 const homeScreen = (props) => {
-  const { appMode } = useContext(AppContext);
+  const { userState } = useContext(GlobalContext);
+
+  console.log("userState", userState);
 
   const repaintHeaderButtons = () => {
-    if (appMode === "user") {
+    if (userState.mode === "user") {
       props.navigation.setOptions({
         headerRight: () => (
           <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
@@ -36,7 +38,7 @@ const homeScreen = (props) => {
       });
     }
 
-    if (appMode === "phi") {
+    if (userState.mode === "phi") {
       props.navigation.setOptions({
         headerRight: () => (
           <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
@@ -73,7 +75,7 @@ const homeScreen = (props) => {
 
   useEffect(() => {
     repaintHeaderButtons();
-  }, [appMode]);
+  }, [userState]);
 
   return (
     <View style={styles.screen}>
