@@ -1,9 +1,27 @@
+import { useContext } from "react";
+import { GlobalContext } from "../context";
 import axios from "axios";
+
+const fetchSignToken = () => {
+  const { userState} = useContext(GlobalContext);
+  return userState.signToken
+};
 
 const http = axios.create({
   baseURL: "http://192.168.8.102:9000/.netlify/functions/api",
   timeout: 10000,
 });
+
+http.interceptors.request.use(
+  async (config) => {
+    const signToken = fetchSignToken();
+    if (signToken) {
+      config.headers["Authorization"] = `Bearer ${signToken}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 const api = {
   post: {
