@@ -1,22 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { TextInput } from "react-native";
 import theme from "../../../lib/theme";
 import { Screen } from "../../components/ui";
 import { UserTile } from "../../components/modals";
-import Users from "../../dummy-data/users";
+import api from "../../api/index"
 
 const searchUserScreen = () => {
   const [search, setSearch] = useState(null);
   const [usersArray, setUsersArray] = useState([]);
 
-  useEffect(() => {
-    const array = Users.filter((user) => user.id.toString().includes(search));
-    setUsersArray(array);
-  }, [search]);
-
+  
   const handleChangeText = (value) => {
     setSearch(value);
   };
+
+  const handleEndEdit = async () => {
+    try {
+      const fetchUserData = await api.get.fetch_user(search);
+      if (!fetchUserData) {
+        throw new Error("Something Went Worng");
+      }
+      setUsersArray([fetchUserData.data.result]);
+    } catch (error) {
+      alert(
+        "Something went wrong while loading. Please check your internet connection..."
+      );
+      console.error(error.message);
+    } 
+  }
 
   return (
     <Screen>
@@ -26,6 +37,7 @@ const searchUserScreen = () => {
         onChangeText={handleChangeText}
         value={search}
         keyboardType="number-pad"
+        onEndEditing={handleEndEdit}
       />
       {usersArray.map((user) => (
         <UserTile
