@@ -1,33 +1,35 @@
 import React, { useState } from "react";
 import { TextInput } from "react-native";
 import theme from "../../../lib/theme";
-import { Screen } from "../../components/ui";
+import { Loading, Screen } from "../../components/ui";
 import { UserTile } from "../../components/modals";
-import api from "../../api/index"
+import api from "../../api/index";
 
 const searchUserScreen = () => {
   const [search, setSearch] = useState(null);
   const [usersArray, setUsersArray] = useState([]);
+  const [loading, setloading] = useState(false);
 
-  
   const handleChangeText = (value) => {
     setSearch(value);
   };
 
   const handleEndEdit = async () => {
     try {
-      const fetchUserData = await api.get.fetch_user(search);
-      if (!fetchUserData) {
-        throw new Error("Something Went Worng");
+      setloading(true);
+      const { data } = await api.get.fetch_user(search);
+      if (!data.success) {
+        throw new Error(data.msg);
       }
-      setUsersArray([fetchUserData.data.result]);
+      setUsersArray([data.result]);
     } catch (error) {
-      alert(
-        "Something went wrong while loading. Please check your internet connection..."
-      );
-      console.error(error.message);
-    } 
-  }
+      alert("Oops! " + error.message);
+    } finally {
+      setloading(false);
+    }
+  };
+
+  if (loading) return <Loading />;
 
   return (
     <Screen>

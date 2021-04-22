@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, FlatList } from "react-native";
 import { TestResultTile } from "../../components/modals";
-import api from "../../api/index"
+import api from "../../api/index";
 
 const testResultsScreen = () => {
-
   const [loading, setLoading] = useState(false);
   const [rerender, setRerender] = useState(0);
-  const [history, setHistory] = useState("");
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
     (async () => {
       try {
         setLoading(true);
-        const testResults = await api.get.fetch_test_results();
-        if (!testResults) {
-          throw new Error("Something Went Worng");
+        const { data } = await api.get.fetch_test_results();
+        if (!data.success) {
+          throw new Error(data.msg);
         }
-        setHistory([...testResults.data.result]);
+        setHistory([...data.result]);
       } catch (error) {
-        alert(
-          "Something went wrong while loading your test results. Please check your internet connection..."
-        );
-        console.error(error.message);
+        alert("Oops! " + error.message);
       } finally {
         setLoading(false);
       }
@@ -32,7 +28,6 @@ const testResultsScreen = () => {
   const forceUpdate = () => {
     setRerender((prevState) => prevState + 1);
   };
-
 
   const renderReportStatusTile = ({ item }) => (
     <TestResultTile
