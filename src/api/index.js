@@ -8,16 +8,16 @@ const http = axios.create({
 const api = {
   post: {
     signup: (body) => http.post("/auth/signup", body),
-    signin: async (body) => await http.post("/auth/signin", body),
-    add_new_visit: async (body) => await http.post("/visit/add", body),
+    signin: (body) => http.post("/auth/signin", body),
+    add_new_visit: (body) => http.post("/visit/add", body),
   },
   get: {
-    fetch_test_results: async (nic) => await http.get(`/user/tests/${nic}`),
-    fetch_user: async (nic) => await http.get(`/user/fetch/${nic}`),
+    fetch_test_results: (nic) => http.get(`/user/tests/${nic}`),
+    fetch_user: (nic) => http.get(`/user/fetch/${nic}`),
   },
   put: {
-    update_test_results: async (nic) =>
-      await http.get(`/user/health-status/${nic}`),
+    update_test_results: (nic, body) =>
+       http.get(`/user/health-status/${nic}`, body),
   },
 };
 
