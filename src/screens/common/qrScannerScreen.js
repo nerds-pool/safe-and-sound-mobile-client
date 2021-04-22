@@ -39,7 +39,7 @@ const qrScannerScreen = (props) => {
       setLoading(true);
       const { data } = await api.put.add_new_visit(addLocationBody);
       if (!data.success) throw new Error(data.msg ?? "Somehing went wrong...");
-      props.navigation.navigate("checkout");
+      props.navigation.navigate("checkout", { visit: data.result });
     } catch (error) {
       alert("Oops! " + error.message);
     } finally {

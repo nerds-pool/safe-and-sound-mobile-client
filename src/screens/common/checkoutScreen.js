@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { StyleSheet, View, Text, Dimensions } from "react-native";
 import theme from "../../../lib/theme";
 import { Loading, Screen } from "../../components/ui";
 import Slider from "@react-native-community/slider";
 import api from "../../api";
+import { GlobalContext } from "../../context";
 
 const { width: WINDOWS_WIDTH } = Dimensions.get("window");
 
 const checkoutScreen = (props) => {
   const [loading, setloading] = useState(false);
+  const { userState } = useContext(GlobalContext);
 
   const handleValueChange = async (value) => {
     if (value === 1) {
       try {
         setloading(true);
-        const { data } = await api.patch.checkout();
+        const body = {
+          nic: userState.nic,
+          departure: Date.now(),
+          visitId: props.route.params.visit,
+        };
+        const { data } = await api.patch.checkout(body);
         if (!data.success) throw new Error(data.msg);
         props.navigation.navigate("home");
       } catch (error) {
