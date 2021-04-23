@@ -25,7 +25,7 @@ const checkoutScreen = (props) => {
         if (!data.success) throw new Error(data.msg);
         props.navigation.navigate("home");
       } catch (error) {
-        alert("Oops! " + error.message);
+        alert("Oops! Something went wrong while checking out...");
       } finally {
         setloading(false);
       }

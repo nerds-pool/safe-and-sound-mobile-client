@@ -44,7 +44,7 @@ const qrScannerScreen = (props) => {
         location: data.result.location,
       });
     } catch (error) {
-      alert("Oops! " + error.message);
+      alert("Oops! Something went wrong while checking in...");
     } finally {
       setLoading(false);
     }

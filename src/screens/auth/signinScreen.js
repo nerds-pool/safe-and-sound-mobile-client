@@ -84,7 +84,7 @@ const signinScreen = (props) => {
       await SecureStore.setItemAsync("signToken", data.result.signToken);
       props.navigation.replace("home");
     } catch (error) {
-      alert("Oops! " + error.message);
+      alert("Invalid NIC or password. Please try again...");
     } finally {
       setLoading(false);
     }

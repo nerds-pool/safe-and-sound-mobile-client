@@ -38,7 +38,7 @@ const addTestResultsScreen = () => {
       if (!data.success) throw new Error(data.msg);
       handleClear();
     } catch (error) {
-      alert("Oops! " + error.message);
+      alert("Oops! Something went wrong while adding new test results...");
     } finally {
       setloading(false);
     }

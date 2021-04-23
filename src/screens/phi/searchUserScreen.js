@@ -23,7 +23,7 @@ const searchUserScreen = () => {
       }
       setUsersArray([data.result]);
     } catch (error) {
-      alert("Oops! " + error.message);
+      alert("Nothing to show right now. Please try another NIC...");
     } finally {
       setloading(false);
     }

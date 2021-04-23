@@ -303,7 +303,9 @@ const signupScreen = (props) => {
       console.log("data", data);
       props.navigation.replace("signin");
     } catch (error) {
-      alert("Oops! " + error.message);
+      alert(
+        "Oops! Somethin went wrong while signing up. Please try again later..."
+      );
     } finally {
       setLoading(false);
     }

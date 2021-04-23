@@ -26,13 +26,6 @@ const homeScreen = (props) => {
               color={theme.colors.accent}
               onPress={() => props.navigation.navigate("history")}
             />
-            {/* <Item
-              title="Log Out"
-              IconComponent={Ionicons}
-              iconName="log-out-outline"
-              color={theme.colors.accent}
-              onPress={() => {}}
-            /> */}
           </HeaderButtons>
         ),
       });
@@ -63,13 +56,6 @@ const homeScreen = (props) => {
               color={theme.colors.accent}
               onPress={() => props.navigation.navigate("search")}
             />
-            {/* <Item
-              title="Log Out"
-              IconComponent={Ionicons}
-              iconName="log-out-outline"
-              color={theme.colors.accent}
-              onPress={() => {}}
-            /> */}
           </HeaderButtons>
         ),
       });

@@ -21,7 +21,7 @@ const testResultsScreen = () => {
         }
         setHistory([...data.result]);
       } catch (error) {
-        alert("Oops! " + error.message);
+        alert("Nothing to show right now");
       } finally {
         setLoading(false);
       }
