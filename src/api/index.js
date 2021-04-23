@@ -2,7 +2,7 @@ import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 
 const http = axios.create({
-  baseURL: "http://192.168.8.101:9000/.netlify/functions/api",
+  baseURL: "https://safe-and-sound.netlify.app/.netlify/functions/api",
   timeout: 10000,
 });
 
