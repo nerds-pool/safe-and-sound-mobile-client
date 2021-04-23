@@ -1,13 +1,14 @@
 import axios from "axios";
+import * as SecureStore from "expo-secure-store";
 
 const http = axios.create({
-  baseURL: "http://192.168.8.102:9000/.netlify/functions/api",
+  baseURL: "http://192.168.8.101:9000/.netlify/functions/api",
   timeout: 10000,
 });
 
 http.interceptors.request.use(
   async (config) => {
-    const signToken = localStorage.getItem("signToken");
+    const signToken = await SecureStore.getItemAsync("signToken");
     if (signToken) {
       config.headers["Authorization"] = `Bearer ${signToken}`;
     }

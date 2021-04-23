@@ -21,8 +21,16 @@ const TestResultTile = ({ hospital, testedDate, issuedDate, result, type }) => {
           style={styles.txt}
           numberOfLines={1}
         >{`Issued By: ${hospital}`}</Text>
-        <Text style={styles.txt}>{`Issued Date: ${issuedDate}`}</Text>
-        <Text style={styles.txt}>{`Tested Date: ${testedDate}`}</Text>
+        <Text style={styles.txt}>{`Issued Date: ${new Date(
+          issuedDate
+        ).getDate()}/${new Date(issuedDate).getMonth() + 1}/${new Date(
+          issuedDate
+        ).getFullYear()}`}</Text>
+        <Text style={styles.txt}>{`Tested Date: ${new Date(
+          testedDate
+        ).getDate()}/${new Date(testedDate).getMonth() + 1}/${new Date(
+          testedDate
+        ).getFullYear()}`}</Text>
         <Text style={styles.txt}>{`Test Type: ${type.toUpperCase()}`}</Text>
       </View>
       <View style={styles.tileRight}>

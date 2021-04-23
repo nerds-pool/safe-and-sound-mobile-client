@@ -39,9 +39,9 @@ const checkoutScreen = (props) => {
       <Text style={{ ...styles.txt, ...styles.txtSemi }}>
         Safely checked in to
       </Text>
-      <Text style={{ ...styles.txt, ...styles.txtBold }}>
-        Cargills Food City at Kottawa
-      </Text>
+      <Text
+        style={{ ...styles.txt, ...styles.txtBold }}
+      >{` ${props.route.params.location.name} @ ${props.route.params.location.city}`}</Text>
 
       <View style={styles.sliderWrapper}>
         <Slider

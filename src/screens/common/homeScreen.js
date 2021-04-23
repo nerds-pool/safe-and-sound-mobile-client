@@ -26,13 +26,13 @@ const homeScreen = (props) => {
               color={theme.colors.accent}
               onPress={() => props.navigation.navigate("history")}
             />
-            <Item
+            {/* <Item
               title="Log Out"
               IconComponent={Ionicons}
               iconName="log-out-outline"
               color={theme.colors.accent}
               onPress={() => {}}
-            />
+            /> */}
           </HeaderButtons>
         ),
       });
@@ -50,19 +50,26 @@ const homeScreen = (props) => {
               onPress={() => props.navigation.navigate("test")}
             />
             <Item
+              title="History"
+              IconComponent={Ionicons}
+              iconName="document-text-outline"
+              color={theme.colors.accent}
+              onPress={() => props.navigation.navigate("history")}
+            />
+            <Item
               title="Search"
               IconComponent={Ionicons}
               iconName="search-outline"
               color={theme.colors.accent}
               onPress={() => props.navigation.navigate("search")}
             />
-            <Item
+            {/* <Item
               title="Log Out"
               IconComponent={Ionicons}
               iconName="log-out-outline"
               color={theme.colors.accent}
               onPress={() => {}}
-            />
+            /> */}
           </HeaderButtons>
         ),
       });

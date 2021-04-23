@@ -28,8 +28,8 @@ const addTestResultsScreen = () => {
       setloading(true);
       const body = {
         issuedBy: issuer,
-        issuedDate: issueDate,
-        testedDate: testDate,
+        issuedDate: new Date(issueDate).toUTCString(),
+        testedDate: new Date(testDate).toUTCString(),
         testType: testType,
         testStatus: testStatus,
       };
@@ -57,19 +57,19 @@ const addTestResultsScreen = () => {
       <TextInput
         style={theme.styles.txtInput}
         value={issuer}
-        placeholder="Issuer"
+        placeholder="Issued By"
         onChangeText={(text) => setIssuer(text)}
       />
       <TextInput
         style={theme.styles.txtInput}
         value={issueDate}
-        placeholder="Issue Date"
+        placeholder="Issue Date (yyyy/MM/dd)"
         onChangeText={(text) => setIssueDate(text)}
       />
       <TextInput
         style={theme.styles.txtInput}
         value={testDate}
-        placeholder="Tested Date"
+        placeholder="Tested Date (yyyy/MM/dd)"
         onChangeText={(text) => setTestDate(text)}
       />
       <View style={theme.styles.txtInput}>

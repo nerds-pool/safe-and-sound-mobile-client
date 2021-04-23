@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StyleSheet, Text, TextInput } from "react-native";
+import * as SecureStore from "expo-secure-store";
 import { BigButton, Screen, Loading } from "../../components/ui";
 import { useFormFields, useFormValidation } from "../../../lib/hooks";
 import {
@@ -80,7 +81,7 @@ const signinScreen = (props) => {
       );
       await dispatchUser(setMode(userMode));
       await dispatchToken(setTokens(data.result.signToken));
-      localStorage.setItem("signToken", data.result.signToken);
+      await SecureStore.setItemAsync("signToken", data.result.signToken);
       props.navigation.replace("home");
     } catch (error) {
       alert("Oops! " + error.message);

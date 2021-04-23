@@ -78,6 +78,14 @@ const mainNavigator = () => {
           ...TransitionPresets.SlideFromRightIOS,
         }}
       />
+      <Stack.Screen
+        name="history"
+        component={TestResultsScreen}
+        options={{
+          title: "PCR/Antigen Results History",
+          ...TransitionPresets.SlideFromRightIOS,
+        }}
+      />
       {userState.mode === "phi" ? (
         <>
           <Stack.Screen
@@ -98,16 +106,7 @@ const mainNavigator = () => {
           />
         </>
       ) : (
-        <>
-          <Stack.Screen
-            name="history"
-            component={TestResultsScreen}
-            options={{
-              title: "PCR/Antigen Results History",
-              ...TransitionPresets.SlideFromRightIOS,
-            }}
-          />
-        </>
+        <></>
       )}
     </Stack.Navigator>
   );

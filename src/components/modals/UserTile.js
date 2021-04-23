@@ -1,19 +1,17 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Dimensions, Pressable } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Dimensions,
+  Pressable,
+} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import theme from "../../../lib/theme";
 
 const { width: WINDOW_WIDTH } = Dimensions.get("window");
 
-const UserTile = ({
-  name,
-  contact,
-  email,
-  gender,
-  profession,
-  address,
-  city,
-}) => {
+const UserTile = ({ name, contact, gender, profession, address, city }) => {
   const [isExpand, setIsExpand] = useState(false);
 
   const handlePress = () => {
@@ -41,7 +39,6 @@ const UserTile = ({
           <Text style={styles.txt}>{`Address: ${address}`}</Text>
           <Text style={styles.txt}>{`Profession: ${profession}`}</Text>
           <Text style={styles.txt}>{`Gender: ${gender}`}</Text>
-          <Text style={styles.txt}>{email ? `Email: ${email}` : null}</Text>
         </View>
       ) : null}
     </View>
@@ -76,6 +73,7 @@ const styles = StyleSheet.create({
   },
   txt: {
     color: theme.colors.primary,
+    flexWrap: "wrap",
     fontSize: 16,
     marginVertical: 2,
   },

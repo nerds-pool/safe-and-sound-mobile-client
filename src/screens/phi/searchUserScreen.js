@@ -46,11 +46,10 @@ const searchUserScreen = () => {
           key={usersArray.indexOf(user)}
           name={user.name}
           contact={user.contact}
-          email={user.email}
           gender={user.gender}
           profession={user.profession}
-          address={user.address}
-          city={user.city}
+          address={user.address.line}
+          city={user.address.city}
         />
       ))}
     </Screen>
