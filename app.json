@@ -2,8 +2,9 @@
   "expo": {
     "name": "Safe&Sound",
     "slug": "safe-and-sound",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "privacy": "public",
+    "description": "Safe and Sound is a Covid-19 related user visits and associates tracking system. This is a Beta version, please install the Expo Go application in android to launch the application. IOS application is still don't have a Beta version. Since this is a Beta version, there might be unknown bugs. We apologize for that and please make sure to inform us about the bug through our communication channel at Gitter.",
     "orientation": "portrait",
     "icon": "./assets/logo.png",
     "splash": {
